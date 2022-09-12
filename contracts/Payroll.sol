@@ -129,3 +129,6 @@ contract Payroll{
     }
 
 }  
+
+
+//  manger = _manger;
