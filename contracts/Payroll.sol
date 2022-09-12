@@ -32,7 +32,7 @@ contract Payroll{
     uint256 public constant Monthcount = 30 days;
     uint MonthlySalaryForJuniors = 10; 
     IERC20 stablecoin;
-    bytes32 rootHash = 0x0d5fb2c7e11ece5346872fad03e984941fb66bd99152d8efb560455fbcde0363;
+    bytes32 rootHash;
     uint256 currentAmountofTokens;
     bool intialState;
   
@@ -122,10 +122,11 @@ contract Payroll{
 
     ////////////////////////////////////////////////////////////CONSTRUCTOR/////////////////////////////////////////////////////////////
 
-    function initialise(address _manger,IERC20 _stablecoin) external Initialised{
+    function initialise(address _manger,IERC20 _stablecoin, bytes32 _rootHash) external Initialised{
         stablecoin = _stablecoin;
         manger = _manger;
         intialState = true;
+        rootHash = _rootHash; 
     }
 
 }  

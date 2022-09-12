@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
  
 
 interface Iimplementation {
-    function initialise(address manger, IERC20 _stablecoin) external;
+    function initialise(address manger, IERC20 _stablecoin, bytes32 _rootHash) external;
 }
 
 contract Factory{
@@ -25,10 +25,10 @@ contract Factory{
 
     event Created(address clone);
 
-    function clone(address _implementation, uint256 _salt, address manger, IERC20 _stablecoin) external OnlyOwner{
+    function clone(address _implementation, uint256 _salt, address manger, IERC20 _stablecoin , bytes32 _rootHash) external OnlyOwner{
         bytes32 salt  = keccak256(abi.encodePacked(block.timestamp, _salt));
         address newClone = Clones.cloneDeterministic(_implementation, salt);
-        Iimplementation(newClone).initialise(manger, _stablecoin);
+        Iimplementation(newClone).initialise(manger, _stablecoin , _rootHash);
         emit Created(newClone);
     }
 
